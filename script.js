@@ -45,4 +45,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Google Analytics Event Tracking for Social Links
+  const socialLinks = [
+    { id: 'link-x', event: 'clicked_x' },
+    { id: 'link-github', event: 'clicked_github' },
+    { id: 'link-linkedin', event: 'clicked_linkedin' },
+    { id: 'link-threads', event: 'clicked_threads' }
+  ];
+
+  socialLinks.forEach(({ id, event }) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.addEventListener('click', () => {
+        if (typeof gtag === 'function') {
+          gtag('event', event);
+        }
+      });
+    }
+  });
 });
+
